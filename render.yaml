@@ -1,6 +1,6 @@
 databases:
-  - name: reservation_0o4v_user
-    databaseName: reservation_0o4v
+  - name: postgres
+    databaseName: reservation_0o4v_user
     user: RRite_Calender
     region: singapore
 
