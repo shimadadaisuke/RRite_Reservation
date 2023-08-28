@@ -1,13 +1,13 @@
 databases:
   - name: postgres
     databaseName: reservation_0o4v
-    user: RRite_Calender
+    user: RRite
     region: singapore
 
 
 services:
   - type: web
-    name: RRite_Calender
+    name: RRite
     env: ruby
     region: singapore
     plan: free
