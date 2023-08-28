@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'render/index'
-  root 'render#index'
+  get 'calendars/index'
+  root 'calendars#index'
 
 end
