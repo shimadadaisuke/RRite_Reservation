@@ -1,7 +1,7 @@
 databases:
-  - name: pg
-    databaseName: postgres
-    user: reservation_0o4v_user
+  - name: postgre
+    databaseName: reservation
+    user: reservation_0o4v
     region: singapore
 
 
