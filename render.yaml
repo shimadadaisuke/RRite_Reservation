@@ -1,5 +1,5 @@
 databases:
-  - name: pg
+  - name: Reservation
     databaseName: reservation
     user: reservation_0o4v_user
     region: singapore
