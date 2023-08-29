@@ -89,6 +89,8 @@ test:
 #
 production:
   <<: *default
-  database: mysite_production
-  username: mysite
-  password: <%= ENV["MYSITE_DATABASE_PASSWORD"] %>
+  database: Reservation
+  username: Reservation
+  password: <%= ENV["DD7qik57EUbrqhdNINOsPhyiPUNKCQAA"] %>
+
+
