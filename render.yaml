@@ -1,6 +1,6 @@
 databases:
   - name: Reservation
-    databaseName: reservation
+    databaseName: reservation_0o4v
     user: reservation_0o4v_user
     region: singapore
 
