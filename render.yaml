@@ -1,5 +1,5 @@
 databases:
-  - name: postgre
+  - name: Resavation
     databaseName: reservation
     user: reservation_0o4v
     region: singapore
