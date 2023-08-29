@@ -1,5 +1,5 @@
 databases:
-  - name: Reservation
+  - name: dpg-cjgol7j6fquc739gi0n0-a
     databaseName: reservation_0o4v
     user: reservation_0o4v_user
     region: singapore
