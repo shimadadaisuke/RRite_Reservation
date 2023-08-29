@@ -91,6 +91,6 @@ production:
   <<: *default
   database: Reservation
   username: Reservation
-  url: <%= ENV['postgres://reservation_0o4v_user:DD7qik57EUbrqhdNINOsPhyiPUNKCQAA@dpg-cjgol7j6fquc739gi0n0-a/reservation_0o4v'] %>
+  url: <%= ENV['DATABASE_URL'] %> 
 
 
