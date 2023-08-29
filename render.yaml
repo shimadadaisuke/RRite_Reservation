@@ -1,5 +1,5 @@
 databases:
-  - name: postgre
+  - name: Reservation
     databaseName: reservation
     user: reservation_0o4v_user
     region: singapore
@@ -16,7 +16,7 @@ services:
     envVars:
       - key: postgres://reservation_0o4v_user:DD7qik57EUbrqhdNINOsPhyiPUNKCQAA@dpg-cjgol7j6fquc739gi0n0-a/reservation_0o4v
         fromDatabase:
-          name: postgres
+          name: Reservation
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
