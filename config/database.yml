@@ -89,8 +89,8 @@ test:
 #
 production:
   <<: *default
-  database: Reservation
-  username: Reservation
+  database: mysite_production
+  username: mysite
   url: <%= ENV['DATABASE_URL'] %> 
 
 
