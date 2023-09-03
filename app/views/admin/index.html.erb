@@ -140,6 +140,70 @@
               
   <script>
   $(document).ready(function() {
+    var allReservations = [];
+  
+    // 日付をフォーマットする関数
+    function formatDateWithWeekday(dateString) {
+      var date = new Date(dateString);
+      var year = date.getFullYear();
+      var month = date.getMonth() + 1;
+      var day = date.getDate();
+      if (month < 10) month = '0' + month;
+      if (day < 10) day = '0' + day;
+      return `${year}/${month}/${day}`;
+    }
+  
+    // アラートを表示してページをリロードする関数
+    function alertAndReload(message) {
+      alert(message);
+      location.reload();
+    }
+  
+    // Ajax操作を実行する関数
+    function performAjax(method, url, successMessage, errorMessage) {
+      $.ajax({
+        method: method,
+        url: url,
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+        },
+        success: function() {
+          alertAndReload(successMessage);
+        },
+        error: function(xhr, textStatus, errorThrown) {
+          alert(errorMessage + textStatus + " - " + errorThrown);
+        }
+      });
+    }
+  
+    // すべての予約情報を取得
+    $.getJSON('/admin', function(data) {
+      allReservations = data;
+    });
+  
+    // ユーザー選択時の処理
+    $("#user-select").on("change", function() {
+      var selectedUserName = $(this).val();
+      if (selectedUserName === "") {
+        alert("氏名を選択してください");
+        return;
+      }
+  
+      var selectedUserReservations = allReservations.filter(function(reservation) {
+        return reservation.name === selectedUserName;
+      });
+  
+      var popupMessage = "↓↓" + selectedUserName + "の履歴情報（登録情報：当月から前後6カ月）はこちら↓↓\n\n";
+      selectedUserReservations.forEach(function(reservation) {
+        var formattedDate = formatDateWithWeekday(reservation.date);
+        popupMessage += "【日付】 " + formattedDate + "　" + " [メニュー] " + reservation.menu + "\n";
+      });
+  
+      alert(popupMessage);
+    });
+
+
+
     $('#submit_button').on('click', function() {
       var selectedValue = $("input[name='source_date']:checked").val(); // ラジオボタンの選択値を取得
       var checkedBoxes = $("input[name='destination_dates[]']:checked").length;

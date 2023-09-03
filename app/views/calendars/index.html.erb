@@ -23,12 +23,18 @@
       <% end %>
     </div>
 
-    <!-- この部分は見出しとして単独で -->
-    <h1>RRite_予定表</h1>
     
-    <!-- それ以外の説明やガイドはdivタグで囲む -->
-    <div class="guide-wrapper">
-      <div class="guide-content">
+    <div class="row align-items-center">
+    <div class="col-6">
+      <header class="container mt-4 mb-4">
+        <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=990dmxet">
+          <%= image_tag 'render.png', class: 'mw-100' %>
+        </a>
+      </header>
+    </div>
+    <div class="col-6">
+      <div class="guide-wrapper">
+        <div class="guide-content">
         ■ご利用方法<br>
         １．以下のカレンダー画面より、”空き”情報をご確認ください。<br>
         ２．ご予約したい”空き”情報をクリック選択してください。<br>
@@ -38,12 +44,21 @@
         担当者より、後日ご連絡をいたしますので、お待ちください。<br><br>
         <u>※ 直接ご連絡いただいてもご予約は可能となります。</u>
       </div>
-      <div class="guide-example">
+        <div class="guide-example">
         <span>"空き情報"例</span><br>
         <a class="reservation-info empty-reservation"><u>1:15 空き</u></a>
       </div>
+      </div>
     </div>
-    
+  </div>
+      
+  <!-- この部分は見出しとして単独で -->
+  <h1>RRite_予定表</h1>
+  
+  <!-- 現在の月表示 -->
+  <div class="current-month-container">
+    <h2 class="current-month"><%= @current_month.strftime("%Y年%m月") %></h2>
+  </div>
 
     <div class="navigation">
     <!-- 前月へのリンク。5ヶ月以上前の日付にはリンクを表示しない -->
