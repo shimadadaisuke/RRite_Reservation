@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+ <% flash.each do |alert, value| %>
+    <div class="alert-<%= alert %>">
+      <%= value %>
+    </div>
+  <% end %>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>New Reservation</title>
+  <%= link_to 'Back', 'javascript:history.back()', class: 'calendar-link' %>
+
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <h1>New Reservation</h1>
+  <%= form_with model: @reservation, url: reservations_path, id: 'reservation_form' do |form| %>
+
+    <div id="reservation_fields">
+    
+      <%= form.label :date, class: 'field' %>
+      <%= form.date_field :date, readonly: true, id: 'reservation_date', style: 'border: none;' %>
+      <br>
+
+      <%= form.label :category, class: 'field' %>
+      <%= form.select :category, ['予約登録', '空き枠登録', '予定変更'], { prompt: '' }, { required: true, id: 'category_select' } %>
+      <br>
+
+      <%= form.label :time, class: 'field' %>
+      <%= form.select :hour, (0..23).map { |n| [format('%02d', n), n] }, { prompt: '時間' }, { required: true, id: 'time_select' } %>
+      <%= form.select :minute, [0, 15, 30, 45].map { |n| [format('%02d', n), n] }, { prompt: '分' }, { required: true, id: 'minute_select' } %>
+      <br>
+
+      <%= form.label :name, class: 'field' %>
+      <%= form.text_field :name, id: 'reservation_name', required: true, class: 'field' %>
+      <br>
+
+      <%= form.label :menu, class: 'field' %>
+      <%= form.text_field :menu, id: 'reservation_menu', class: 'field' %>
+      
+      <br>
+
+      <%= form.label :phone, class: 'field' %>
+      <%= form.text_field :phone, id: 'reservation_phone', class: 'field' %>
+      
+      <br>
+
+
+      <%= form.label :dayoff, class: 'field' %>
+      <%= form.select :dayoff, ['ON'], { prompt: '' }, { class: 'field', id: 'dayoff_select' } %>
+      <br>
+
+      <%= form.label :fullhouse, class: 'field' %>
+      <%= form.select :fullhouse, ['ON'], { prompt: '' }, { class: 'field', id: 'fullhouse_select' } %>
+      <br>
+    </div>
+
+    <!-- 他の入力フィールドをここに追加 -->
+    <br>
+    <div class="actions">
+      <%= form.submit '予約登録', id: 'reservation_button', disabled: true %>
+      <%= button_tag '空き枠登録', id: 'empty_reservation_button', disabled: true %>
+      <%= button_tag '予定変更', class: 'change-button', disabled: true %> 
+
+    </div>
+
+  <% end %>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var categorySelect = document.getElementById('category_select');
+      var timeSelect = document.getElementById('time_select');
+      var minuteSelect = document.getElementById('minute_select');
+      var nameInput = document.getElementById('reservation_name');
+      var menuInput = document.getElementById('reservation_menu');
+      var phoneInput = document.getElementById('reservation_phone');
+      var dayoffSelect = document.getElementById('dayoff_select');
+      var fullhouseSelect = document.getElementById('fullhouse_select');
+      var reservationButton = document.getElementById('reservation_button');
+      var emptyReservationButton = document.getElementById('empty_reservation_button');
+      var changeButton = document.querySelector('.change-button'); 
+
+      function updateFieldsState() {
+        var selectedCategory = categorySelect.value;
+
+        timeSelect.disabled = true;
+        minuteSelect.disabled = true;
+        nameInput.disabled = true;
+        menuInput.disabled = true;
+        phoneInput.disabled = true;
+        dayoffSelect.disabled = true;
+        fullhouseSelect.disabled = true;
+        reservationButton.disabled = true;
+        emptyReservationButton.disabled = true;
+        changeButton.disabled = true; 
+
+        if (selectedCategory === '予約登録') {
+          timeSelect.disabled = false;
+          minuteSelect.disabled = false;
+          nameInput.disabled = false;
+          menuInput.disabled = false;
+          phoneInput.disabled = false;
+          reservationButton.disabled = false;
+        } else if (selectedCategory === '空き枠登録') {
+          timeSelect.disabled = false;
+          minuteSelect.disabled = false;
+          menuInput.disabled = false;
+          emptyReservationButton.disabled = false;
+        } else if (selectedCategory === '予定変更') {
+          dayoffSelect.disabled = false;
+          fullhouseSelect.disabled = false;
+          changeButton.disabled = false; 
+        }
+      }
+
+      categorySelect.addEventListener('change', function() {
+        updateFieldsState();
+      });
+
+      updateFieldsState();
+    });
+  </script>
+</body>
+</html>
