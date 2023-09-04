@@ -37,6 +37,14 @@
       <div class="guide-wrapper">
         <div class="guide-content">
         <%= link_to '【ご使用方法（infomation）】', calendars_path(month: @current_month.prev_month), class: 'prev-month' %>
+        ■ご利用方法<br>
+        １．以下のカレンダー画面より、”空き”情報をご確認ください。<br>
+        ２．ご予約したい”空き”情報をクリック選択してください。<br>
+        ３．ご予約フォームより、必要項目を入力してください。<br>
+        ４．ご予約フォームより、”予約する”ボタンを押してください。<br><br>
+        以上で完了となります。<br>
+        担当者より、後日ご連絡をいたしますので、お待ちください。<br><br>
+        <u>※ 直接ご連絡いただいてもご予約は可能となります。</u>
       </div>
         <div class="guide-example">
         <span>"空き情報"例</span><br>
@@ -111,14 +119,14 @@
                         <!-- 空き情報にリンクを付与する -->
                         <% if reservation.name == '空き' %>
                           <% if reservation.hour.present? && reservation.minute.present? %>
-                            <%= link_to "#{reservation.hour}:#{reservation.minute} #{reservation.name} #{reservation.menu}", user_reservation_path(date: day[:date], hour: reservation.hour, minute: reservation.minute), class: 'reservation-link' %>
+                            <%= link_to "#{reservation.hour}:#{reservation.minute.to_s.rjust(2, '0')} #{reservation.name} #{reservation.menu}", user_reservation_path(date: day[:date], hour: reservation.hour, minute: reservation.minute), class: 'reservation-link' %>
                           <% else %>
                             <%= link_to "#{reservation.name} #{reservation.menu}", '#', class: 'reservation-link' %>
                           <% end %>
                         <% else %>
                           <!-- それ以外の予約情報 -->
                           <% if reservation.hour.present? && reservation.minute.present? %>
-                            <%= "#{reservation.hour}:#{reservation.minute} #{reservation.name}" %>
+                            <%= "#{reservation.hour}:#{reservation.minute.to_s.rjust(2, '0')} #{reservation.name}" %>
                           <% else %>
                             <%= "#{reservation.name} " %>
                           <% end %>

@@ -15,7 +15,6 @@
   <!-- jQueryの読み込み -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-
 <body class="admin">
   <!-- ユーザー画面へのリンク -->
   <%= link_to 'ユーザー画面へ', calendars_path %>
@@ -104,7 +103,7 @@
           <% if reservation.name == 'ご予約受付中' %>
           <%= link_to "#", class: "action-button", "data-reservation-id": reservation.id do %>
           <% if reservation.hour.present? && reservation.minute.present? %>
-          <%= "#{reservation.hour}:#{reservation.minute} #{reservation.name} #{reservation.menu} #{reservation.phone}" %>
+          <%= "#{reservation.hour}:#{reservation.minute.to_s.rjust(2, '0')} #{reservation.name} #{reservation.menu} #{reservation.phone}" %>
           <% else %>
           <%= "#{reservation.name} #{reservation.menu}" %>
           <% end %>
@@ -112,7 +111,7 @@
           <% else %>
           <%= link_to "#", class: "delete-button", "data-reservation-id": reservation.id do %>
           <% if reservation.hour.present? && reservation.minute.present? %>
-          <%= "#{reservation.hour}:#{reservation.minute} #{reservation.name} #{reservation.menu} #{reservation.phone}" %>
+          <%= "#{reservation.hour}:#{reservation.minute.to_s.rjust(2, '0')} #{reservation.name} #{reservation.menu} #{reservation.phone}" %>
           <% else %>
           <%= "#{reservation.name} #{reservation.menu}" %>
           <% end %>

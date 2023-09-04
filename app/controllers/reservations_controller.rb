@@ -30,8 +30,19 @@ class ReservationsController < ApplicationController
       date: params[:date],
       hour: params[:hour],
       minute: params[:minute]
+      
     )
   end
+
+  def user
+    minute = params[:minute].to_s.rjust(2, '0')  # ここで左ゼロ埋め
+    @reservation = Reservation.new(
+      date: params[:date],
+      hour: params[:hour],
+      minute: minute  # 修正した minute を使用
+    )
+  end
+  
 
   # 予約の削除
   def destroy
