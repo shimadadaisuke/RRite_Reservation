@@ -6,6 +6,15 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
+  <style>
+    .your-container-class {
+      background-image: url(<%= asset_path 'background.png' %>);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.9;
+    }
+  </style>
   <%= yield :extra_head %>
 </head>
 <body class="your-container-class">

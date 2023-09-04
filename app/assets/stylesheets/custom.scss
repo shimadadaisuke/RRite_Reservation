@@ -174,14 +174,6 @@ body.admin {
 }
 
 
-.your-container-class {
-  background-image: url('<%= asset_path "background.png" %>');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.9;
-}
-
 /* モバイル端末用のスタイル */
 @media only screen and (max-width: 767px) {
   .your-container-class {
