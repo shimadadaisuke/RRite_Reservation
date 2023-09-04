@@ -96,7 +96,7 @@ class ReservationsController < ApplicationController
       @reservation.name = '空き'
     elsif @reservation.category == '予定変更'
       @reservation.name = '満員' if @reservation.fullhouse == 'ON'
-      @reservation.name = '臨時休暇' if @reservation.dayoff == 'ON'
+      @reservation.name = '臨時休業' if @reservation.dayoff == 'ON'
     end
   end
 

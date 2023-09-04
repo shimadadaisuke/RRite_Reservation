@@ -36,25 +36,11 @@
     <div class="col-6">
       <div class="guide-wrapper">
         <div class="guide-content">
-        <%= link_to '【ご使用方法（infomation）】', calendars_path(month: @current_month.prev_month), class: 'prev-month' %>
-        ■ご利用方法<br>
-        １．以下のカレンダー画面より、”空き”情報をご確認ください。<br>
-        ２．ご予約したい”空き”情報をクリック選択してください。<br>
-        ３．ご予約フォームより、必要項目を入力してください。<br>
-        ４．ご予約フォームより、”予約する”ボタンを押してください。<br><br>
-        以上で完了となります。<br>
-        担当者より、後日ご連絡をいたしますので、お待ちください。<br><br>
-        <u>※ 直接ご連絡いただいてもご予約は可能となります。</u>
-      </div>
-        <div class="guide-example">
-        <span>"空き情報"例</span><br>
-        <a class="reservation-info empty-reservation"><u>1:15 空き</u></a>
-      </div>
+        <%= link_to '（作成予定）【ご使用方法（infomation）】', calendars_path(month: @current_month.prev_month), class: 'prev-month' %>
       </div>
     </div>
   </div>
       
-  <!-- この部分は見出しとして単独で -->
   <h1>RRite_予定表</h1>
 
   <!-- 現在の月表示 -->
@@ -113,8 +99,8 @@
                   </div>
                   <!-- 予約情報のループ -->
                   <% reservations.each do |reservation| %>
-                    <% if ['臨時休暇', '空き', '満員', 'ご予約受付中'].include?(reservation.name) %>
-                      <div class="<%= reservation.name == '臨時休暇' ? 'holiday-cell' : reservation.name == 'ご予約受付中' ? 'holiday-cell temp-closed'  : reservation.name == '空き' ? 'reservation-info empty-reservation' : reservation.name == '満員' ? 'change' : '' %>" data-reservation-id="<%= reservation.id %>">
+                    <% if ['臨時休業', '空き', '満員', 'ご予約受付中'].include?(reservation.name) %>
+                      <div class="<%= reservation.name == '臨時休業' ? 'holiday-cell' : reservation.name == 'ご予約受付中' ? 'holiday-cell temp-closed'  : reservation.name == '空き' ? 'reservation-info empty-reservation' : reservation.name == '満員' ? 'change' : '' %>" data-reservation-id="<%= reservation.id %>">
                         <!-- 予約情報の表示 -->
                         <!-- 空き情報にリンクを付与する -->
                         <% if reservation.name == '空き' %>

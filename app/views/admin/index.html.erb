@@ -24,7 +24,7 @@
     <label for="user-select">施術情報：</label>
     <select id="user-select">
       <option value="" selected disabled>氏名を選択してください</option>
-      <% @reservations.pluck(:name).uniq.compact.reject { |name| ['臨時休暇', '空き', '満員', 'ご予約受付中'].include?(name) }.each do |name| %>
+      <% @reservations.pluck(:name).uniq.compact.reject { |name| ['臨時休業', '空き', '満員', 'ご予約受付中'].include?(name) }.each do |name| %>
       <option value="<%= name %>"><%= name %></option>
       <% end %>
     </select>
@@ -99,7 +99,7 @@
         <!-- 予約情報の表示 -->
         <% reservations.each do |reservation| %>
         <% if reservation.name.present? %>
-        <div class="<%= reservation.name == '臨時休暇' ? 'holiday-cell' : reservation.name == 'ご予約受付中' ? 'holiday-cell temp-closed' : reservation.name == '空き' ? 'reservation-info empty-reservation' : reservation.name == '満員' ? 'change' : '' %>" data-reservation-id="<%= reservation.id %>">
+        <div class="<%= reservation.name == '臨時休業' ? 'holiday-cell' : reservation.name == 'ご予約受付中' ? 'holiday-cell temp-closed' : reservation.name == '空き' ? 'reservation-info empty-reservation' : reservation.name == '満員' ? 'change' : '' %>" data-reservation-id="<%= reservation.id %>">
           <% if reservation.name == 'ご予約受付中' %>
           <%= link_to "#", class: "action-button", "data-reservation-id": reservation.id do %>
           <% if reservation.hour.present? && reservation.minute.present? %>
