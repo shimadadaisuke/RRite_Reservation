@@ -32,17 +32,11 @@
         </a>
       </header>
     </div>
+    
     <div class="col-6">
       <div class="guide-wrapper">
         <div class="guide-content">
-        ■ご利用方法<br>
-        １．以下のカレンダー画面より、”空き”情報をご確認ください。<br>
-        ２．ご予約したい”空き”情報をクリック選択してください。<br>
-        ３．ご予約フォームより、必要項目を入力してください。<br>
-        ４．ご予約フォームより、”予約する”ボタンを押してください。<br><br>
-        以上で完了となります。<br>
-        担当者より、後日ご連絡をいたしますので、お待ちください。<br><br>
-        <u>※ 直接ご連絡いただいてもご予約は可能となります。</u>
+        <%= link_to '【ご使用方法（infomation）】', calendars_path(month: @current_month.prev_month), class: 'prev-month' %>
       </div>
         <div class="guide-example">
         <span>"空き情報"例</span><br>
@@ -54,7 +48,7 @@
       
   <!-- この部分は見出しとして単独で -->
   <h1>RRite_予定表</h1>
-  
+
   <!-- 現在の月表示 -->
   <div class="current-month-container">
     <h2 class="current-month"><%= @current_month.strftime("%Y年%m月") %></h2>
