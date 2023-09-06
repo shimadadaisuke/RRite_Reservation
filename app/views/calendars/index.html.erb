@@ -90,7 +90,9 @@
                 <% reservations = @reservations_by_date[day[:date].to_date] || [] %>
                 <% today_class = day[:date].to_date == Date.today ? 'today' : '' %>
                 <% past_class = day[:date].to_date < Date.today ? 'past-date' : '' %>
-                <td class="<%= "#{today_class} #{past_class}" %>">
+
+                <td data-date="<%= day[:date].to_date %>" class="<%= "#{today_class} #{past_class}" %>">
+
                   <!-- 日付の表示 -->
                   <div class="date-cell">
                     <%= day[:date].day %>
@@ -148,6 +150,21 @@
             }
           }
         });
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+          const today = new Date();
+          const todayString = today.toISOString().split('T')[0]; // "2023-09-03" のような形式に変換
+        
+          // td要素をループして、data-date属性を読み取ります
+          document.querySelectorAll('td[data-date]').forEach(function(td) {
+            const date = td.getAttribute('data-date'); // "2023-09-03" のような形式になっている
+            if (date === todayString) {
+              td.classList.add('today');
+            }
+          });
+        });
+        
   
         // ボタンをクリックした際にポップアップを表示する
         $("#admin-button").on("click", function (event) {
