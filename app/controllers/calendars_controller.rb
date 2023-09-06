@@ -6,11 +6,6 @@ class CalendarsController < ApplicationController
 
   # カレンダーのトップページ
   def index
-    Rails.logger.info("今日の日付は: #{Date.today}")
-    Rails.logger.info("現在のタイムゾーン設定は: #{Time.zone.name}")
-    
-    
-    
 
     # 選択された月を取得。なければ今月の初日を設定
     selected_month = params[:month]
