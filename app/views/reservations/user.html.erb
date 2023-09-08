@@ -14,7 +14,7 @@
   <!-- 予約日と時間の隠しフィールド（フォーム送信時にサーバーへ渡される） -->
   <%= form.hidden_field :date, value: params[:date] || @reservation.date %>
   <%= form.hidden_field :hour, value: params[:hour] || @reservation.hour %>
-  <%= form.hidden_field :minute, value: params[:minute] || @reservation.minute %>
+  <%= form.hidden_field :minute, value: params[:minute] || @reservation.minute.to_s.rjust(2, '0') %>
 
   <!-- ご予約名の入力フィールド（必須） -->
   <%= form.label :reservename, 'ご予約名' %>
