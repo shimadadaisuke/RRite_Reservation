@@ -59,5 +59,3 @@ gem 'holidays'
 # Webpackのサポート
 gem "webpacker", "~> 5.4"
 
-# 定期的なジョブのスケジューリング
-gem 'whenever', require: false
